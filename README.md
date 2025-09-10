@@ -25,14 +25,13 @@ This project was implemented as part of a technical assignment for the **Junior 
 
 ```bash
 BookingSolution.sln
-├── src
+├── API
 │   ├── Booking.Api             # Web API (Controllers, Swagger, DI setup)
 │   ├── Booking.Application     # DTOs, Services, Mapping
 │   ├── Booking.Domain          # Entities (User, Trip, Reservation)
 │   ├── Booking.Infrastructure  # EF Core DbContext, Migrations, Repositories
-│   └── Booking.WebUI           # (optional) Razor Pages UI
-└── tests
-    └── Booking.Api.Tests       # (optional) Unit/Integration tests
+│ 
+└──
 ```
 
 ## ⚙️ Tech Stack
