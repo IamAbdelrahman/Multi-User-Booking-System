@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Booking.Domain.Entities
 {
-    public class Reservation
+    public class Reservation:BaseEntity<string>
     {
-        public string Id { get; set; }
         public string ReservedByUserId { get; set; }
         public virtual User? ReservedByUser { get; set; }
         public string CustomerName { get; set; }

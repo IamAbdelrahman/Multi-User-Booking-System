@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Booking.Domain.Entities
 {
-    public class Trip
+    public class Trip:BaseEntity<string>
     {
-        public string Id { get; set; }
         public string Name { get; set; }
         public string CityName { get; set; }
         public decimal Price { get; set; }
