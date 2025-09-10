@@ -23,16 +23,17 @@ This project was implemented as part of a technical assignment for the **Junior 
 
 ## 🏗️ Project Structure
 
+```bash
 BookingSolution.sln
 ├── src
-│ ├── Booking.Api # Web API (controllers, Swagger, DI setup)
-│ ├── Booking.Application # DTOs, services, mapping
-│ ├── Booking.Domain # Entities (User, Trip, Reservation)
-│ ├── Booking.Infrastructure # EF Core DbContext, migrations, repositories
-│ └── Booking.WebUI # (optional) Razor Pages UI
+│   ├── Booking.Api             # Web API (Controllers, Swagger, DI setup)
+│   ├── Booking.Application     # DTOs, Services, Mapping
+│   ├── Booking.Domain          # Entities (User, Trip, Reservation)
+│   ├── Booking.Infrastructure  # EF Core DbContext, Migrations, Repositories
+│   └── Booking.WebUI           # (optional) Razor Pages UI
 └── tests
-└── Booking.Api.Tests # (optional) Unit/Integration tests
----
+    └── Booking.Api.Tests       # (optional) Unit/Integration tests
+```
 
 ## ⚙️ Tech Stack
 - **.NET 9 SDK**
