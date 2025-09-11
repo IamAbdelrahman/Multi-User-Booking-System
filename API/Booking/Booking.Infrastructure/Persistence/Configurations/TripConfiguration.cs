@@ -14,15 +14,28 @@ namespace Booking.Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Trip> builder)
         {
-            builder.ToTable("Trips");
-            builder.HasKey(t => t.Id);
+            builder.Property(r => r.Id).IsRequired()
+                .ValueGeneratedOnAdd()
+                .HasDefaultValueSql("NEWID()");
+
             builder.Property(t => t.Name).HasMaxLength(200).IsRequired();
+
             builder.Property(t => t.CityName).HasMaxLength(100).IsRequired();
+
             builder.Property(t => t.Price).HasColumnType("decimal(18,2)").IsRequired();
+
             builder.Property(t => t.ImageUrl).HasMaxLength(2000);
+
             builder.Property(t => t.Content).HasColumnType("nvarchar(max)");
-            builder.Property(t => t.Created).IsRequired();
+
+            // Timestamp configurations
+            builder.Property(x => x.Created)
+                .IsRequired()
+                .ValueGeneratedOnAdd()
+                .HasDefaultValueSql("GETDATE()");
+
             builder.Property(t => t.IsActive).IsRequired().HasDefaultValue(true);
+
             builder.HasOne(t => t.Owner)
                    .WithMany(u => u.Trips)
                    .HasForeignKey(t => t.OwnerId)

@@ -14,13 +14,32 @@ namespace Booking.Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Reservation> builder)
         {
-            builder.ToTable("Reservations");
-            builder.HasKey(r => r.Id);
+            builder.Property(r => r.Id).IsRequired()
+                .ValueGeneratedOnAdd()
+                .HasDefaultValueSql("NEWID()");
 
             builder.Property(r => r.CustomerName).HasMaxLength(200).IsRequired();
+
             builder.Property(r => r.ReservationDate).IsRequired();
-            builder.Property(r => r.CreatedAt).IsRequired();
+
             builder.Property(r => r.Notes).HasMaxLength(1000);
+
+            builder.Property(r => r.CheckIn).IsRequired();
+
+            builder.Property(r => r.CheckOut).IsRequired();
+
+            builder.Property(r => r.Status).HasMaxLength(50).IsRequired();
+
+            // Timestamp configurations
+            builder.Property(x => x.CreatedAt)
+                .IsRequired()
+                .ValueGeneratedOnAdd()
+                .HasDefaultValueSql("GETDATE()");
+
+            builder.Property(x => x.UpdatedAt)
+                .IsRequired()
+                .HasDefaultValueSql("GETDATE()")
+                .ValueGeneratedOnAddOrUpdate();
 
             // Relationship: Reservation -> User (ReservedBy)
             builder.HasOne(r => r.ReservedByUser)

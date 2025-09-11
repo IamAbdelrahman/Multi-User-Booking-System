@@ -21,7 +21,7 @@ namespace Booking.Infrastructure.Persistence
         }
 
         public virtual DbSet<Trip> Trips { get; set; }
+        public virtual DbSet<TripAvailability> TripAvailabilities { get; set; }
         public virtual DbSet<Reservation> Reservations { get; set; }
-        public virtual DbSet<User> Users { get; set; }
     }
 }
