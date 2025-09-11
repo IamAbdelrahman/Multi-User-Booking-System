@@ -20,7 +20,7 @@ namespace Booking.Domain.Entities
         public DateTime CheckIn { get; set; }
         public DateTime CheckOut { get; set; }
         public string? Notes { get; set; }
-        public ReservationStatus Status { get; set; } = ReservationStatus.Pending;
+        public string Status { get; set; } = ReservationStatus.Pending.ToString();
     }
 }
    
