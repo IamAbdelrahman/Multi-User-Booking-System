@@ -15,6 +15,8 @@ namespace Booking.Domain.Entities
         public string Content { get; set; } // Accepts HTML content
         public DateTime Created { get; set; }
         public bool IsActive { get; set; } = true;
+        public string OwnerId { get; set; }
+        public virtual User Owner { get; set; }
         public virtual ICollection<Reservation> Reservations { get; set; } = new HashSet<Reservation>();
 
     }
