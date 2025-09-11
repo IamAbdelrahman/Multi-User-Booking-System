@@ -14,5 +14,6 @@ namespace Booking.Domain.Entities
         public DateTime CreatedAt { get; set; }
         public virtual ICollection<Trip> Trips { get; set; } = new HashSet<Trip>();
         public virtual ICollection<Reservation> Reservations { get; set; } = new HashSet<Reservation>();
+        public virtual ICollection<IdentityRole> Roles { get; set; } = new HashSet<IdentityRole>();
     }
 }

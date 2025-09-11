@@ -18,6 +18,7 @@ namespace Booking.Domain.Entities
         public string OwnerId { get; set; }
         public virtual User Owner { get; set; }
         public virtual ICollection<Reservation> Reservations { get; set; } = new HashSet<Reservation>();
+        public virtual ICollection<TripAvailability> TripAvailabilities { get; set; } = new HashSet<TripAvailability>();
 
     }
 }
