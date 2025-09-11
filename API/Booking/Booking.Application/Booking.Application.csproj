@@ -6,4 +6,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Reservations\Commands\" />
+    <Folder Include="Reservations\Queries\" />
+    <Folder Include="Trips\Commands\" />
+    <Folder Include="Trips\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Booking.Domain\Booking.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
