@@ -1,12 +1,13 @@
 ﻿using Booking.Application.Common.Interfaces;
+using Booking.Application.Common.Mappings;
 using Booking.Domain.Entities;
 using Booking.Infrastructure.Persistence;
 using Booking.Infrastructure.Persistence.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -15,7 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using AutoMapper;
 namespace Booking.Infrastructure.Common
 {
     public static class InfrastructureConfigurationExtension
@@ -78,7 +79,8 @@ namespace Booking.Infrastructure.Common
 
             // Register repositories
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+            services.AddAutoMapper(typeof(ReservationProfile));
+            services.AddAutoMapper(typeof(TripProfile));
             return services;
         }
     }
