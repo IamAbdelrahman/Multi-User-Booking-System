@@ -31,9 +31,16 @@ namespace Booking.Application.Common.Mappings
                 .ForMember(dest => dest.ReservedByUserId, opt => opt.Ignore())
                 .ForMember(dest => dest.CreatedAt, opt => opt.Ignore());
 
-            // Reservation -> ListReservationDTO
+            // Reservation -> ReservationDTO
+            CreateMap<Reservation, ReservationDTO>()
+                .ForMember(dest => dest.TripName, opt => opt.MapFrom(src => src.Trip != null ? src.Trip.Name : string.Empty))
+                .ReverseMap();
+
             CreateMap<Reservation, ListReservationDTO>()
-                .ForMember(dest => dest.TripName, opt => opt.MapFrom(src => src.Trip != null ? src.Trip.Name : string.Empty));        }
+                .ForMember(dest => dest.TripName, opt => opt.MapFrom(src => src.Trip != null ? src.Trip.Name : string.Empty))
+                .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Trip != null ? src.Trip.Price : 0))
+                .ReverseMap();
+        }
     }
 
 }

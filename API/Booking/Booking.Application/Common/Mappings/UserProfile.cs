@@ -19,5 +19,8 @@ public class UserProfile : Profile
             .ForMember(dest => dest.LastName, opt => opt.MapFrom<FullNameToLastNameResolver>());
 
         CreateMap<LoginDto, User>();
+        CreateMap<User, UserDto>()
+            .ForMember(dest => dest.Roles, opt => opt.Ignore()) // Roles will be set manually
+            .ForMember(dest => dest.Token, opt => opt.Ignore()); // Token will be set manually
     }
 }

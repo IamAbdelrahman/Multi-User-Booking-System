@@ -23,6 +23,10 @@ public class TripProfile : Profile
 
         // UpdateTripDto → Trip
         CreateMap<UpdateTripDto, Trip>();
+        CreateMap<Trip, TripDTO>()
+            .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Content))
+            .ForMember(dest => dest.OwnerName, opt => opt.MapFrom(src => src.Owner.FullName)) 
+            .ForMember(dest => dest.CreationDate, opt => opt.MapFrom(src => src.Created));
 
     }
 }
