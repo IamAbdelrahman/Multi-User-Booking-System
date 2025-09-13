@@ -1,8 +1,10 @@
-﻿using Booking.Application.Common.Interfaces;
+﻿using AutoMapper;
+using Booking.Application.Common.Interfaces;
 using Booking.Application.Common.Mappings;
 using Booking.Domain.Entities;
 using Booking.Infrastructure.Persistence;
 using Booking.Infrastructure.Persistence.Repositories;
+using Booking.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -14,9 +16,9 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using AutoMapper;
 namespace Booking.Infrastructure.Common
 {
     public static class InfrastructureConfigurationExtension
@@ -30,6 +32,7 @@ namespace Booking.Infrastructure.Common
                 options.UseSqlServer(configuration.GetConnectionString("CFG")));
 
             services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen();
 
             // Add Identity
             services.AddIdentity<User, IdentityRole>(options =>
@@ -77,10 +80,15 @@ namespace Booking.Infrastructure.Common
                 };
             });
 
-            // Register repositories
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddAutoMapper(typeof(ReservationProfile));
-            services.AddAutoMapper(typeof(TripProfile));
+            services.AddScoped<IIdentityFactory, IdentityFactory>();
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddAutoMapper(cfg =>
+            {
+                cfg.AddProfile(new ReservationProfile());
+                cfg.AddProfile(new UserProfile());
+                cfg.AddProfile(new TripProfile());
+            });
             return services;
         }
     }
