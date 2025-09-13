@@ -49,7 +49,7 @@ namespace Booking.Api.Controllers
             return Ok(mapped);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Customer")]
         /// <summary>
         /// EndPoint Description: Retrieves reservations filtered by customer name and sorted by a specified field.
         /// </summary>
@@ -79,6 +79,7 @@ namespace Booking.Api.Controllers
             return Ok(reservations);
         }
 
+        [Authorize(Roles = "Guest")]
         /// <summary>
         /// EndPoint Description: Retrieves a single reservation by its identifier.
         /// </summary>
@@ -120,6 +121,7 @@ namespace Booking.Api.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = "Admin")]
         /// <summary>
         /// EndPoint Description: Updates an existing reservation identified by id.
         /// </summary>
@@ -143,7 +145,7 @@ namespace Booking.Api.Controllers
             return NoContent();
         }
 
-
+        [Authorize(Roles = "Admin")]
         /// <summary>
         /// EndPoint Description: Deletes a reservation by identifier.
         /// </summary>
