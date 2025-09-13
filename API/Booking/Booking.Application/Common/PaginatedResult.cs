@@ -8,7 +8,8 @@ namespace Booking.Application.Common
 {
     public class PaginatedResult<TEntity>
     {
-        public IEnumerable<TEntity> Items { get; set; }
+        public List<TEntity> Items { get; set; }
         public PaginationMetaData MetaData { get; set; }
     }
+
 }
