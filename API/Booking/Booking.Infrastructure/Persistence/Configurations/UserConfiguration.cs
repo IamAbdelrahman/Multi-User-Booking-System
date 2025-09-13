@@ -38,7 +38,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
                 .UsingEntity<IdentityUserRole<string>>(
                     j => j.HasOne<IdentityRole>().WithMany().HasForeignKey(ur => ur.RoleId),
                     j => j.HasOne<User>().WithMany().HasForeignKey(ur => ur.UserId));
-        // optional: seeding if you want
+
         builder.HasData(UserSeed.Data);
     }
 }

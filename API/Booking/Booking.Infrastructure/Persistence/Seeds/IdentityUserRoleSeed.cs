@@ -25,31 +25,6 @@ namespace Travellin.Infrastructure.Data.Seeds
                 {
                     UserId = "4dacdb51-fee9-4479-904c-cafe7dca22a8",
                     RoleId = "9c75a5df-20a4-4ff1-85a5-bb52f9cf223f" // Customer role ID
-                },
-                new IdentityUserRole<string>
-                {
-                    UserId = "user-2222-3333-4444-5555bbbb",
-                    RoleId = "9c75a5df-20a4-4ff1-85a5-bb52f9cf223f"
-                },
-                new IdentityUserRole<string>
-                {
-                    UserId = "user-3333-4444-5555-6666cccc",
-                    RoleId = "9c75a5df-20a4-4ff1-85a5-bb52f9cf223f"
-                },
-                new IdentityUserRole<string>
-                {
-                    UserId = "user-4444-5555-6666-7777dddd",
-                    RoleId = "9c75a5df-20a4-4ff1-85a5-bb52f9cf223f"
-                },
-                new IdentityUserRole<string>
-                {
-                    UserId = "user-5555-6666-7777-8888eeee",
-                    RoleId = "9c75a5df-20a4-4ff1-85a5-bb52f9cf223f"
-                },
-                new IdentityUserRole<string>
-                {
-                    UserId = "user-7777-8888-9999-0000ffff",
-                    RoleId = "9c75a5df-20a4-4ff1-85a5-bb52f9cf223f"
                 }
             };
     }
