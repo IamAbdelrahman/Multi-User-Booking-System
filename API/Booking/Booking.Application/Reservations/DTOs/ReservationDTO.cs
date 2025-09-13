@@ -1,5 +1,4 @@
-﻿using Booking.Application.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Booking.Application.Reservations.DTOs
 {
-    public class ListReservationDTO:GetAllQueryDto
+    public class ReservationDTO
     {
         public string CustomerName { get; set; }
         public DateTime ReservationDate { get; set; }
@@ -15,8 +14,5 @@ namespace Booking.Application.Reservations.DTOs
         public string TripId { get; set; }
         public string TripName { get; set; }
         public string Status { get; set; }
-        public DateTime CheckIn { get; set; }
-        public DateTime CheckOut { get; set; }
-        public decimal Price { get; set; }
     }
 }

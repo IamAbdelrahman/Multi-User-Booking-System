@@ -13,10 +13,12 @@ namespace Booking.Application.Reservations.DTOs
         public string CustomerName { get; set; } = null!;
 
         [Required]
-        public int TripId { get; set; }
+        public string? TripId { get; set; }
 
         [Required]
-        public DateTime ReservationDate { get; set; }
+        public DateTime CheckIn { get; set; }
+        [Required]
+        public DateTime CheckOut { get; set; }
 
         [MaxLength(1000)]
         public string? Notes { get; set; }
