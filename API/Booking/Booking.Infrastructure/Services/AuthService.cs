@@ -8,9 +8,11 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using static Booking.Infrastructure.Services.AuthService;
 namespace Booking.Infrastructure.Services
 {
     public class AuthService : IAuthService
@@ -21,8 +23,9 @@ namespace Booking.Infrastructure.Services
         private readonly int _expirationInDays;
         private readonly CookieOptions _cookieOptions;
         private readonly IUnitOfWork _unitOfWork;
-        //private readonly ICurrentUserService _currentUser;
-        public AuthService(IConfiguration config, IUnitOfWork unitOfWork)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public AuthService(IConfiguration config, IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor)
         {
             // JWT Configs
             var signingKey = config["Jwt:SigningKey"];
@@ -41,6 +44,7 @@ namespace Booking.Infrastructure.Services
                 IsEssential = true
             };
             _unitOfWork = unitOfWork;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public string CreateToken(User user)
@@ -89,5 +93,20 @@ namespace Booking.Infrastructure.Services
         {
             ctx.Response.Cookies.Delete("access_token", _cookieOptions);
         }
+
+        public string ExtractUsernameFromEmail(string email)
+        {
+            if (string.IsNullOrEmpty(email)) return email;
+            return new MailAddress(email).User;
+        }
+
+        public string UserId =>
+            _httpContextAccessor.HttpContext?.User?.FindFirst("sub")?.Value;
+
+        public bool IsInRole(string role) =>
+            _httpContextAccessor.HttpContext?.User?.IsInRole(role) ?? false;
+
+        public bool IsAuthenticated =>
+            _httpContextAccessor.HttpContext?.User?.Identity?.IsAuthenticated ?? false;
     }
 }
