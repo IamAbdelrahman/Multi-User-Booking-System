@@ -9,10 +9,8 @@ namespace Booking.Application.Reservations.DTOs
 {
     public class CreateReservationDTO
     {
-        [Required, MaxLength(200)]
-        public string CustomerName { get; set; } = null!;
-
-        [Required]
+        [MaxLength(200)]
+        public string? CustomerName { get; set; } = null!;
         public string? TripId { get; set; }
 
         [Required]
